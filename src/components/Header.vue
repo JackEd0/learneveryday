@@ -5,8 +5,8 @@
             data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <!-- <input class="form-control form-control-dark w-100 rounded-0 border-0" type="text" placeholder="Search"
-            aria-label="Search"> -->
+        <input v-model="searchQuery" @input="searchPosts" class="form-control form-control-dark w-100 rounded-0 border-0 visually-hidden-sm" type="text"
+            placeholder="Search posts..." aria-label="Search">
         <!-- <div class="navbar-nav">
             <div class="nav-item text-nowrap">
                 <a class="nav-link px-3" href="#">Sign out</a>
@@ -19,12 +19,31 @@
 </template>
 
 <script lang="ts">
+import { ref } from "vue";
+
 export default {
     data() {
         return {
             banner: "/src/assets/banner.jpg",
         };
     },
+    setup(_, context) {
+        const searchQuery = ref("");
+        const searchPosts = () => {
+            // Emit search event to the parent component (Main.vue)
+            context.emit("search", searchQuery.value);
+        };
+
+        return {
+            searchQuery,
+            searchPosts,
+        };
+    },
+    methods: {
+        clearInput() {
+            this.searchQuery = "";
+        },
+    }
 };
 </script>
 
@@ -39,4 +58,10 @@ export default {
     max-height: 300px;
     object-fit: cover;
 } */
+
+@media (min-width: 540px) {
+    .visually-hidden-sm {
+        display: none;
+    }
+}
 </style>

@@ -1,6 +1,6 @@
 <template>
     <!-- <div id="app"> -->
-        <Header />
+        <Header @search="searchPosts" />
         <div class="container-fluid">
             <div class="row">
                 <!-- <Sidebar @search="searchPosts" @tagClick="tagPosts" /> -->

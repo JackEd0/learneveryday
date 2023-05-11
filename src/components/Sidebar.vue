@@ -14,8 +14,7 @@
             <ul class="nav flex-column mb-2">
                 <li v-for="(count, tag) in sortedTags" :key="tag" class="nav-item">
                     <!-- <a @click="searchByTag(count[0])">{{ count[0] }} ({{ count[1] }})</a> -->
-                    <router-link :to="{ name: 'tags', params: { tag: count[0] } }" class="nav-link">{{ count[0] }} ({{ count[1]
-                    }})</router-link>
+                    <router-link :to="{ name: 'tags', params: { tag: count[0] } }" class="nav-link">{{ count[0] }} <span class="badge text-bg-secondary">{{ count[1] }}</span></router-link>
                 </li>
             </ul>
         </div>
@@ -72,6 +71,11 @@ export default {
             sortedTags,
         };
     },
+    methods: {
+        clearInput() {
+            this.searchQuery = "";
+        },
+    }
 };
 </script>
 

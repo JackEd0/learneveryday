@@ -22,6 +22,10 @@ npm run dev
 <https://router.vuejs.org/guide/advanced/composition-api.html#accessing-the-router-and-current-route-inside-setup>
 <https://router.vuejs.org/guide/>
 
+https://www.ign.com/ca
+https://medium.com/
+https://getbootstrap.com/docs/5.3/examples/blog/#
+
 ## Details
 
 ### Global

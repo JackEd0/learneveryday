@@ -1,23 +1,26 @@
 <template>
-    <div v-if="post" class="card mb-3" style="max-width: 540px; max-height: 270px;">
-        <div class="row g-0">
-            <div class="col-md-4 col-1">
-                <img :src="post.image || '/src/content/banners/placeholder.jpg'" class="img-fluid rounded-start post-img" :alt=post.title>
-            </div>
-            <div class="col-md-8 col-11">
-                <div class="card-body">
-                    <router-link :to="{ name: 'posts', params: { slug: post.slug } }">
-                        <h5 class="card-title">{{ post.title }}</h5>
-                    </router-link>
-                    <p class="card-text" v-html="content"></p>
-                    <p class="card-text"><small class="text-body-secondary">{{ formatDate(post.created_at) }}</small>
-                    </p>
+    <div class="col" :class="{ 'col-md-12': index === 0 }">
+
+        <div v-if="post" class="card mb-3" style="max-height: 270px;" :class="{ 'card-n': index > 0 }">
+            <div class="row g-0">
+                <div class="col-md-4 col-1 rounded-start card-image" :style="`background-image: url(${post.image || '/src/content/banners/placeholder.jpg'})`" :alt=post.title>
+                    <!-- <img :src="post.image || '/src/content/banners/placeholder.jpg'" class="img-fluid rounded-start post-img" :alt=post.title> -->
                 </div>
-                <div class="card-footer text-body-secondary">
-                    <router-link v-for="(tag, index) in post.tags" :key="index" class="me-2"
-                        :to="{ name: 'tags', params: { tag: tag } }">
-                        {{ tag }}
-                    </router-link>
+                <div class="col-md-8 col-11">
+                    <div class="card-body">
+                        <router-link :to="{ name: 'posts', params: { slug: post.slug } }">
+                            <h5 class="card-title">{{ post.title }}</h5>
+                        </router-link>
+                        <p class="card-text" v-html="content"></p>
+                        <p class="card-text"><small class="text-body-secondary">{{ formatDate(post.created_at) }}</small>
+                        </p>
+                    </div>
+                    <div class="card-footer text-body-secondary">
+                        <router-link v-for="(tag, index) in post.tags" :key="index" class="me-2"
+                            :to="{ name: 'tags', params: { tag: tag } }">
+                            {{ tag }}
+                        </router-link>
+                    </div>
                 </div>
             </div>
         </div>
@@ -33,6 +36,10 @@ export default defineComponent({
     props: {
         post: {
             type: Object as () => Post | null,
+            required: true,
+        },
+        index: {
+            type: Number,
             required: true,
         },
     },
@@ -71,6 +78,17 @@ export default defineComponent({
     height: 269px;
     width: 200px;
     object-fit: cover;
+}
+
+.card-n {
+    /* max-width: 540px; */
+}
+
+.card-image {
+    /* max-width: 200px; */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 .card-body {

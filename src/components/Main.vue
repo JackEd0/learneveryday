@@ -1,15 +1,17 @@
 <template>
     <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 pt-3 pb-3">
-        <div v-if="$route.params?.slug">
-            <!-- Display the content of the current post -->
-            <SinglePost :post="fetchCurrentPost($route.params.slug)" />
-        </div>
-        <div v-else-if="$route.params?.tag">
-            <PostPreview v-for="(post, index) in tagSearch($route.params?.tag)" :key="index" :post="post" />
-        </div>
-        <div v-else>
-            <!-- Display a list of posts based on the current context (home, search, or tag) -->
-            <PostPreview v-for="(post, index) in posts" :key="index" :post="post" />
+        <div class="container">
+            <div v-if="$route.params?.slug">
+                <!-- Display the content of the current post -->
+                <SinglePost :post="fetchCurrentPost($route.params.slug)" />
+            </div>
+            <div v-else-if="$route.params?.tag" class="row">
+                <PostPreview v-for="(post, index) in tagSearch($route.params?.tag)" :key="index" :post="post" :index="index" />
+            </div>
+            <div v-else class="row row-cols-1 row-cols-md-2 g-4">
+                <!-- Display a list of posts based on the current context (home, search, or tag) -->
+                <PostPreview v-for="(post, index) in posts" :key="index" :post="post" :index="index" />
+            </div>
         </div>
     </main>
 </template>
