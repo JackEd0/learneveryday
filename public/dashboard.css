@@ -7,6 +7,13 @@ body {
   height: 16px;
 }
 
+pre {
+  /* background-color: #415257; */
+  background-color: rgb(33, 37, 41);
+  color: white;
+  padding: 5px;
+}
+
 /*
  * Sidebar
  */

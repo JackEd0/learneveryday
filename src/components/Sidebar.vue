@@ -1,28 +1,7 @@
 <template>
-    <!-- <button v-if="!isSidebarVisible" @click="toggleSidebar" class="collapse-btn">Show sidebar</button>
-    <div class="sidebar" v-show="isSidebarVisible">
-        <div class="header">
-            <router-link to="/" class="home-link">Home</router-link>
-            <button @click="toggleSidebar" class="collapse-btn">Collapse</button>
-        </div>
-        <input type="text" v-model="searchQuery" @input="searchPosts" placeholder="Search posts..." class="search-input" />
-        <div class="tags">
-            <h3>Tags</h3>
-            <ul>
-                <li v-for="(count, tag) in sortedTags" :key="tag">
-                    <!- <a @click="searchByTag(count[0])">{{ count[0] }} ({{ count[1] }})</a> ->
-                    <router-link :to="{ name: 'tags', params: { tag: count[0] } }">{{ count[0] }} ({{ count[1]
-                    }})</router-link>
-                </li>
-            </ul>
-        </div>
-    </div> -->
     <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-body-tertiary sidebar collapse" style="">
         <div class="position-sticky pt-3 sidebar-sticky">
             <ul class="nav flex-column">
-                <!-- <li class="nav-item">
-                    <router-link to="/" class="nav-link active" aria-current="page">Home</router-link>
-                </li> -->
                 <li class="nav-item">
                     <input type="text" v-model="searchQuery" @input="searchPosts" placeholder="Search posts..." class="form-control search-input" />
                 </li>

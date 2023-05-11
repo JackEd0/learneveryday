@@ -14,12 +14,13 @@ npm install marked
 npm run dev
 ```
 
-http://localhost:5173/
+<http://localhost:5173/>
+<https://getbootstrap.com/docs/5.3/components/card/#horizontal>
 <https://slugify.online/>
-https://www.pexels.com/search/banner%20internet%20blog/?orientation=landscape
-https://vuejs.org/guide/components/v-model.html
-https://router.vuejs.org/guide/advanced/composition-api.html#accessing-the-router-and-current-route-inside-setup
-https://router.vuejs.org/guide/
+<https://www.pexels.com/search/banner%20internet%20blog/?orientation=landscape>
+<https://vuejs.org/guide/components/v-model.html>
+<https://router.vuejs.org/guide/advanced/composition-api.html#accessing-the-router-and-current-route-inside-setup>
+<https://router.vuejs.org/guide/>
 
 ## Details
 
