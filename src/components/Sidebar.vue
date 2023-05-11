@@ -1,5 +1,5 @@
 <template>
-    <button v-if="!isSidebarVisible" @click="toggleSidebar" class="collapse-btn">Show sidebar</button>
+    <!-- <button v-if="!isSidebarVisible" @click="toggleSidebar" class="collapse-btn">Show sidebar</button>
     <div class="sidebar" v-show="isSidebarVisible">
         <div class="header">
             <router-link to="/" class="home-link">Home</router-link>
@@ -10,12 +10,37 @@
             <h3>Tags</h3>
             <ul>
                 <li v-for="(count, tag) in sortedTags" :key="tag">
-                    <!-- <a @click="searchByTag(count[0])">{{ count[0] }} ({{ count[1] }})</a> -->
-                    <router-link :to="{ name: 'tags', params: { tag: count[0] } }">{{ count[0] }} ({{ count[1] }})</router-link>
+                    <!- <a @click="searchByTag(count[0])">{{ count[0] }} ({{ count[1] }})</a> ->
+                    <router-link :to="{ name: 'tags', params: { tag: count[0] } }">{{ count[0] }} ({{ count[1]
+                    }})</router-link>
                 </li>
             </ul>
         </div>
-    </div>
+    </div> -->
+    <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-body-tertiary sidebar collapse" style="">
+        <div class="position-sticky pt-3 sidebar-sticky">
+            <ul class="nav flex-column">
+                <!-- <li class="nav-item">
+                    <router-link to="/" class="nav-link active" aria-current="page">Home</router-link>
+                </li> -->
+                <li class="nav-item">
+                    <input type="text" v-model="searchQuery" @input="searchPosts" placeholder="Search posts..." class="form-control search-input" />
+                </li>
+            </ul>
+
+            <h6
+                class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-body-secondary text-uppercase">
+                <span>Tags</span>
+            </h6>
+            <ul class="nav flex-column mb-2">
+                <li v-for="(count, tag) in sortedTags" :key="tag" class="nav-item">
+                    <!-- <a @click="searchByTag(count[0])">{{ count[0] }} ({{ count[1] }})</a> -->
+                    <router-link :to="{ name: 'tags', params: { tag: count[0] } }" class="nav-link">{{ count[0] }} ({{ count[1]
+                    }})</router-link>
+                </li>
+            </ul>
+        </div>
+    </nav>
 </template>
 
 <script lang="ts">
@@ -23,10 +48,13 @@ import { ref, computed } from "vue";
 import postsData from "../content/posts.json";
 
 export default {
+    inheritAttrs: false,
     setup(_, context) {
         const searchQuery = ref("");
         const isSidebarVisible = ref(true);
         const searchPosts = () => {
+            console.log("searchPosts", searchQuery.value);
+
             // Emit search event to the parent component (Main.vue)
             context.emit("search", searchQuery.value);
         };
@@ -69,60 +97,7 @@ export default {
 </script>
 
 <style>
-.sidebar {
-    /* Add your preferred styles for the sidebar */
-    color: rgb(211, 211, 217);
-}
-
-.header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.collapse-btn {
-    /* Add your preferred styles for the collapse button */
-    background-color: transparent;
-    border: none;
-    color: inherit;
-    font-size: 16px;
-    cursor: pointer;
-}
-
 .search-input {
-    /* Add your preferred styles for the search input */
-    width: 100%;
-    padding: 6px;
-    margin-bottom: 1rem;
-    background-color: transparent;
-    border: 1px solid rgb(211, 211, 217);
-    color: inherit;
-}
-
-.tags {
-    /* Add your preferred styles for the tags section */
-}
-
-.tags h3 {
-    margin-bottom: 0.5rem;
-}
-
-.tags ul {
-    list-style-type: none;
-    padding: 0;
-}
-
-.tags li a {
-    display: inline-block;
-    padding: 4px 8px;
-    margin-bottom: 4px;
-    background-color: rgb(211, 211, 217);
-    color: white;
-    text-decoration: none;
-    border-radius: 4px;
-}
-
-.tags li a:hover {
-    background-color: rgba(211, 211, 217, 0.8);
+    border-radius: 0;
 }
 </style>

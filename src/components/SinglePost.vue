@@ -6,8 +6,8 @@
                 <span class="post-date">{{ formatDate(post.created_at) }}</span>
             </div>
         </div>
-        <div class="post-tags">
-            <router-link v-for="(tag, index) in post.tags" :key="index" class="post-tag"
+        <div class="post-tags mb-3">
+            <router-link v-for="(tag, index) in post.tags" :key="index" class="post-tag me-2"
                 :to="{ name: 'tags', params: { tag: tag } }">
                 {{ tag }}
             </router-link>
@@ -55,37 +55,5 @@ export default defineComponent({
 </script>
 
 <style>
-.single-post {
-    /* Add your preferred styles for the single post container */
-}
 
-.post-header {
-    /* Add your preferred styles for the post header */
-}
-
-.post-title {
-    /* Add your preferred styles for the post title */
-}
-
-.post-meta {
-    /* Add your preferred styles for the post meta container */
-}
-
-.post-date {
-    /* Add your preferred styles for the post date */
-}
-
-.post-tags {
-    /* Add your preferred styles for the post tags container */
-}
-
-.post-tag {
-    /* Add your preferred styles for each tag link */
-    margin-right: 8px;
-    text-decoration: none;
-}
-
-.post-content {
-    /* Add your preferred styles for the post content */
-}
 </style>

@@ -1,17 +1,21 @@
 <template>
-    <div id="app">
+    <!-- <div id="app"> -->
         <Header />
-        <div class="app-container">
-            <!-- <Sidebar @search="searchPosts" @tagClick="tagPosts" /> -->
-            <Sidebar @search="searchPosts" />
-            <!-- <Main @tagSearch="tagPosts" @slugSearch="slugPost" :posts="filteredPosts" :post="currentPost"/> -->
-            <Main @tagSearch="tagPosts" @slugSearch="slugPost" :posts="filteredPosts" :allPosts="posts"/>
+        <div class="container-fluid">
+            <div class="row">
+                <!-- <Sidebar @search="searchPosts" @tagClick="tagPosts" /> -->
+                <Sidebar @search="searchPosts" />
+                <!-- <Sidebar onSearch="searchPosts" /> -->
+                <!-- <Main @tagSearch="tagPosts" @slugSearch="slugPost" :posts="filteredPosts" :post="currentPost"/> -->
+                <Main @tagSearch="tagPosts" @slugSearch="slugPost" :posts="filteredPosts" :allPosts="posts"/>
+            </div>
         </div>
-    </div>
+    <!-- </div> -->
 </template>
 
 <script lang="ts">
 import { defineComponent, ref } from 'vue';
+import { useRouter, useRoute } from 'vue-router';
 import Header from './components/Header.vue';
 import Sidebar from './components/Sidebar.vue';
 import Main from './components/Main.vue';
@@ -39,8 +43,16 @@ export default defineComponent({
         const posts: Post[] = postsData;
         const filteredPosts = ref(posts.slice(0, 10));
         const currentPost = ref(null as Post | null);
+        const route = useRoute();
+        const router = useRouter();
 
         const searchPosts = (searchTerm: string) => {
+            if (router.currentRoute.value.path !== "/") {
+                console.log("router changed");
+
+                router.push("/");
+            }
+
             const searchResults = posts.filter((post) =>
                 // post.title.includes(searchTerm) ||
                 // post.tags.some((tag) => tag.includes(searchTerm)) ||
@@ -76,12 +88,10 @@ export default defineComponent({
 </script>
 
 <style>
-#app {
-    /* Add your preferred styles for the app container */
+/* #app {
 }
 
 .app-container {
-    /* Add your preferred styles for the app content container */
     display: flex;
 }
 
@@ -92,6 +102,6 @@ export default defineComponent({
 
 .logo.vue:hover {
     filter: drop-shadow(0 0 2em #42b883aa);
-}
+} */
 </style>
 

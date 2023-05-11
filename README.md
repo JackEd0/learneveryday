@@ -14,8 +14,12 @@ npm install marked
 npm run dev
 ```
 
+http://localhost:5173/
 <https://slugify.online/>
 https://www.pexels.com/search/banner%20internet%20blog/?orientation=landscape
+https://vuejs.org/guide/components/v-model.html
+https://router.vuejs.org/guide/advanced/composition-api.html#accessing-the-router-and-current-route-inside-setup
+https://router.vuejs.org/guide/
 
 ## Details
 
