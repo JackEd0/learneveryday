@@ -37,8 +37,10 @@ export default defineComponent({
             default: [],
         },
     },
-    setup(props) {
+    setup(props, context) {
         const fetchCurrentPost = (slug: string | string[]) => {
+            console.log("fetchCurrentPost", slug);
+            context.emit('clearInput');
             const posts: Post[] = props.allPosts;
             const slugPosts = posts.filter((post) => post.slug === slug);
             return slugPosts[0] || null;
@@ -46,6 +48,7 @@ export default defineComponent({
 
         const tagSearch = (tag: string) => {
             console.log("tagSearch", tag);
+            context.emit('clearInput');
             const posts: Post[] = props.allPosts;
             return posts.filter((post) => post.tags.includes(tag));
         };

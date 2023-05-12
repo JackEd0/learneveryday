@@ -1,21 +1,21 @@
 <template>
     <!-- <div id="app"> -->
-        <Header @search="searchPosts" />
+        <Header @search="searchPosts" ref="headerRef" />
         <div class="container-fluid">
             <div class="row">
                 <!-- <Sidebar @search="searchPosts" @tagClick="tagPosts" /> -->
-                <Sidebar @search="searchPosts" />
+                <Sidebar @search="searchPosts" ref="sidebarRef" />
                 <!-- <Sidebar onSearch="searchPosts" /> -->
                 <!-- <Main @tagSearch="tagPosts" @slugSearch="slugPost" :posts="filteredPosts" :post="currentPost"/> -->
-                <Main @tagSearch="tagPosts" @slugSearch="slugPost" :posts="filteredPosts" :allPosts="posts"/>
+                <Main @clearInput="clearInput" @tagSearch="tagPosts" @slugSearch="slugPost" :posts="filteredPosts" :allPosts="posts"/>
             </div>
         </div>
     <!-- </div> -->
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from 'vue';
-import { useRouter, useRoute } from 'vue-router';
+import { defineComponent, ref, onMounted } from 'vue';
+import { useRouter } from 'vue-router';
 import Header from './components/Header.vue';
 import Sidebar from './components/Sidebar.vue';
 import Main from './components/Main.vue';
@@ -43,8 +43,9 @@ export default defineComponent({
         const posts: Post[] = postsData;
         const filteredPosts = ref(posts.slice(0, 10));
         const currentPost = ref(null as Post | null);
-        const route = useRoute();
         const router = useRouter();
+        const headerRef = ref<InstanceType<typeof Header> | null>(null);
+        const sidebarRef = ref<InstanceType<typeof Sidebar> | null>(null);
 
         const searchPosts = (searchTerm: string) => {
             if (router.currentRoute.value.path !== "/") {
@@ -64,6 +65,11 @@ export default defineComponent({
             filteredPosts.value = searchResults;
         };
 
+        const clearInput = () => {
+            headerRef.value?.clearInput();
+            sidebarRef.value?.clearInput();
+        };
+
         const tagPosts = (tag: string) => {
             const taggedPosts = posts.filter((post) => post.tags.includes(tag));
             filteredPosts.value = taggedPosts;
@@ -75,6 +81,10 @@ export default defineComponent({
             // filteredPosts.value = slugPosts;
         };
 
+        onMounted(() => {
+            clearInput();
+        });
+
         return {
             filteredPosts,
             currentPost,
@@ -82,6 +92,9 @@ export default defineComponent({
             tagPosts,
             slugPost,
             posts,
+            clearInput,
+            headerRef,
+            sidebarRef
         };
     },
 });
