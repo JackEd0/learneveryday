@@ -74,6 +74,10 @@ export default defineComponent({
 </script>
 
 <style>
+h1 {
+    font-size: 1.5rem;
+}
+
 .post-img {
     height: 269px;
     width: 200px;

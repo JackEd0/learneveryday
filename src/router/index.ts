@@ -1,6 +1,4 @@
 import { createRouter, createWebHistory } from 'vue-router'
-// import TagVue from '../pages/Tag.vue'
-// import PostVue from '../pages/Post.vue'
 import MainVue from '../components/Main.vue'
 import AppVue from '../App.vue'
 
@@ -15,20 +13,13 @@ const router = createRouter({
     {
       path: '/tags/:tag',
       name: 'tags',
-      // route level code-splitting
-      // this generates a separate chunk (About.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      // component: AppVue,
-      component: MainVue,
-      // props: (route) => ({ tag: route.params.tag }),
+      // component: MainVue,
+      component: AppVue,
     },
     {
       path: '/posts/:slug',
       name: 'posts',
-      component: MainVue,
-      // component: AppVue,
-      // component: () => import('../components/Main.vue'),
-      // props: (route) => ({ slug: route.params.slug }),
+      component: AppVue,
     }
   ]
 })

@@ -5,59 +5,33 @@
             data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <input v-model="searchQuery" @input="searchPosts" class="form-control form-control-dark w-100 rounded-0 border-0 visually-hidden-sm" type="text"
-            placeholder="Search posts..." aria-label="Search">
-        <!-- <div class="navbar-nav">
-            <div class="nav-item text-nowrap">
-                <a class="nav-link px-3" href="#">Sign out</a>
-            </div>
-        </div> -->
+        <input v-model="searchQuery" @input="$emit('search', searchQuery)" class="form-control form-control-dark w-100 rounded-0 border-0 visually-hidden-sm" type="text"
+            placeholder="Search..." aria-label="Search">
     </header>
-    <!-- <header class="header">
-        <img class="banner" :src="banner" alt="Blog banner" />
-    </header> -->
 </template>
 
 <script lang="ts">
 import { ref } from "vue";
 
 export default {
-    data() {
-        return {
-            banner: "/src/assets/banner.jpg",
-        };
-    },
-    setup(_, context) {
+    setup() {
         const searchQuery = ref("");
-        const searchPosts = () => {
-            // Emit search event to the parent component (Main.vue)
-            context.emit("search", searchQuery.value);
-        };
 
         return {
             searchQuery,
-            searchPosts,
         };
     },
     methods: {
         clearInput() {
             this.searchQuery = "";
+            console.log('Header clearInput');
+
         },
     }
 };
 </script>
 
 <style>
-/* .header {
-    width: 100%;
-}
-
-.banner {
-    width: 100%;
-    height: auto;
-    max-height: 300px;
-    object-fit: cover;
-} */
 
 @media (min-width: 540px) {
     .visually-hidden-sm {

@@ -25,6 +25,7 @@ npm run dev
 https://www.ign.com/ca
 https://medium.com/
 https://getbootstrap.com/docs/5.3/examples/blog/#
+https://v3-migration.vuejs.org/breaking-changes/events-api.html#event-bus
 
 ## Details
 
