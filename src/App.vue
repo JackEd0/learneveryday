@@ -1,5 +1,5 @@
 <template>
-    <Header @search="searchPosts" @toggleSidebar="toggleSidebar" ref="headerRef" />
+    <Header @search="searchPosts" ref="headerRef" />
     <div class="container-fluid">
         <div class="row">
             <Sidebar @search="searchPosts" :allPosts="posts" ref="sidebarRef" />
@@ -36,7 +36,6 @@ export default defineComponent({
 
         const searchPosts = (searchTerm: string) => {
             console.log("searchPosts", searchTerm);
-            // console.log(router.currentRoute.value);
             if (router.currentRoute.value.name !== "search") {
                 console.log("router changed");
                 router.push({
@@ -75,10 +74,6 @@ export default defineComponent({
             return posts.filter((post) => post.tags.includes(tag));
         };
 
-        const toggleSidebar = () => {
-            sidebarRef.value?.toggle();
-        };
-
         watch(
             () => route.params,
             (params) => {
@@ -108,7 +103,6 @@ export default defineComponent({
             filteredPosts,
             currentPost,
             searchPosts,
-            toggleSidebar,
             posts,
             clearInput,
             headerRef,

@@ -1,7 +1,7 @@
 <template>
-    <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-body-tertiary sidebar collapse" :class="{ show: isVisible }" style="">
+    <nav ref="navRef" id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-body-tertiary sidebar collapse" style="">
         <div class="position-sticky pt-3 sidebar-sticky">
-            <ul class="nav flex-column visually-hidden-sx">
+            <ul class="nav flex-column visually-hidden-xs">
                 <li class="nav-item">
                     <input type="text" v-model="searchQuery" @input="$emit('search', searchQuery)" placeholder="Search..."
                         class="form-control search-input" />
@@ -36,7 +36,7 @@ export default {
     },
     setup(props) {
         const searchQuery = ref("");
-        const isVisible = ref(false);
+        const navRef = ref<HTMLElement | null>(null);
 
         const tagsCount = computed(() => {
             const tagsCounter: Record<string, number> = {};
@@ -54,7 +54,7 @@ export default {
 
         return {
             searchQuery,
-            isVisible,
+            navRef,
             sortedTags,
         };
     },
@@ -65,12 +65,8 @@ export default {
         },
         collapse() {
             console.log('Sidebar collapse');
-            this.isVisible = false;
+            this.navRef?.classList.remove('show');
         },
-        toggle() {
-            console.log('Sidebar toggle');
-            this.isVisible = !this.isVisible;
-        }
     }
 };
 </script>
@@ -81,7 +77,7 @@ export default {
 }
 
 @media (max-width: 540px) {
-    .visually-hidden-sx {
+    .visually-hidden-xs {
         display: none;
     }
 }

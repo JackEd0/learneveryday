@@ -38,7 +38,7 @@ pre {
   }
 }
 
-@media (max-width: 580px) {
+@media (max-width: 540px) {
   .sidebar {
     padding-top: 0;
   }
