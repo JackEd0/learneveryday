@@ -85,11 +85,11 @@ export default defineComponent({
                     clearInput();
                 }
                 if (params.tag) {
-                    filteredPosts.value = tagSearch(params.tag);
+                    filteredPosts.value = tagSearch(Array.isArray(params.tag) ? params.tag[0] : params.tag);
                     clearInput();
                 }
                 if (params.search) {
-                    const searchTerm = params.search;
+                    const searchTerm = Array.isArray(params.search) ? params.search[0] : params.search;
                     filteredPosts.value = posts.filter((post) =>
                         post.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
                         post.tags.map(tag => tag.toLowerCase()).includes(searchTerm.toLowerCase())
