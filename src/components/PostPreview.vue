@@ -1,10 +1,10 @@
 <template>
     <div class="col" :class="{ 'col-md-12': index === 0 }">
-
-        <div v-if="post" class="card mb-3" style="max-height: 270px;" :class="{ 'card-n': index > 0 }">
+        <div v-if="post" class="card mb-3" style="max-height: 270px;">
             <div class="row g-0">
-                <div class="col-md-4 col-1 rounded-start card-image" :style="`background-image: url(${post.image || '/src/content/banners/placeholder.jpg'})`" :alt=post.title>
-                    <!-- <img :src="post.image || '/src/content/banners/placeholder.jpg'" class="img-fluid rounded-start post-img" :alt=post.title> -->
+                <div class="col-md-4 col-1 rounded-start card-image"
+                    :style="`background-image: url(${post.image || '/src/content/banners/placeholder.jpg'})`"
+                    :alt=post.title>
                 </div>
                 <div class="col-md-8 col-11">
                     <div class="card-body">
@@ -84,12 +84,7 @@ h1 {
     object-fit: cover;
 }
 
-.card-n {
-    /* max-width: 540px; */
-}
-
 .card-image {
-    /* max-width: 200px; */
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;

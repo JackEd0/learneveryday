@@ -33,7 +33,10 @@
         "image": "",
         "tags": [
             "tag4",
-            "tag5"
+            "tag5",
+            "tag1",
+            "tag2",
+            "tag3"
         ],
         "content": "/src/content/post-placeholder.md",
         "created_at": "2023-04-28 09:30:00"

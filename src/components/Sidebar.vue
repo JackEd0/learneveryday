@@ -1,9 +1,10 @@
 <template>
-    <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-body-tertiary sidebar collapse" style="">
+    <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-body-tertiary sidebar collapse" :class="{ show: isVisible }" style="">
         <div class="position-sticky pt-3 sidebar-sticky">
             <ul class="nav flex-column visually-hidden-sx">
                 <li class="nav-item">
-                    <input type="text" v-model="searchQuery" @input="$emit('search', searchQuery)" placeholder="Search..." class="form-control search-input" />
+                    <input type="text" v-model="searchQuery" @input="$emit('search', searchQuery)" placeholder="Search..."
+                        class="form-control search-input" />
                 </li>
             </ul>
 
@@ -13,7 +14,8 @@
             </h6>
             <ul class="nav flex-column mb-2">
                 <li v-for="(count, tag) in sortedTags" :key="tag" class="nav-item">
-                    <router-link :to="{ name: 'tags', params: { tag: count[0] } }" class="nav-link">{{ count[0] }} <span class="badge text-bg-secondary">{{ count[1] }}</span></router-link>
+                    <router-link :to="{ name: 'tags', params: { tag: count[0] } }" class="nav-link">{{ count[0] }} <span
+                            class="badge text-bg-secondary">{{ count[1] }}</span></router-link>
                 </li>
             </ul>
         </div>
@@ -34,6 +36,7 @@ export default {
     },
     setup(props) {
         const searchQuery = ref("");
+        const isVisible = ref(false);
 
         const tagsCount = computed(() => {
             const tagsCounter: Record<string, number> = {};
@@ -51,14 +54,23 @@ export default {
 
         return {
             searchQuery,
+            isVisible,
             sortedTags,
         };
     },
     methods: {
         clearInput() {
-            this.searchQuery = "";
             console.log('Sidebar clearInput');
+            this.searchQuery = "";
         },
+        collapse() {
+            console.log('Sidebar collapse');
+            this.isVisible = false;
+        },
+        toggle() {
+            console.log('Sidebar toggle');
+            this.isVisible = !this.isVisible;
+        }
     }
 };
 </script>

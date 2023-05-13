@@ -1,5 +1,4 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import MainVue from '../components/Main.vue'
 import AppVue from '../App.vue'
 
 const router = createRouter({
@@ -13,12 +12,16 @@ const router = createRouter({
     {
       path: '/tags/:tag',
       name: 'tags',
-      // component: MainVue,
       component: AppVue,
     },
     {
       path: '/posts/:slug',
       name: 'posts',
+      component: AppVue,
+    },
+    {
+      path: '/search/:search',
+      name: 'search',
       component: AppVue,
     }
   ]

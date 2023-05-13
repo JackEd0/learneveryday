@@ -55,5 +55,7 @@ export default defineComponent({
 </script>
 
 <style>
-
+.post-tag {
+    display: inline-block;
+}
 </style>
