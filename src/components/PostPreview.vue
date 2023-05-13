@@ -3,7 +3,7 @@
         <div v-if="post" class="card mb-3" style="max-height: 270px;">
             <div class="row g-0">
                 <div class="col-md-4 col-1 rounded-start card-image"
-                    :style="`background-image: url(${post.image || '/public/content/banners/placeholder.jpg'})`"
+                    :style="`background-image: url(${post.image || '/content/banners/placeholder.jpg'})`"
                     :alt=post.title>
                 </div>
                 <div class="col-md-8 col-11">
