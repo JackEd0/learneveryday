@@ -15,7 +15,7 @@ import Header from './components/Header.vue';
 import Sidebar from './components/Sidebar.vue';
 import Main from './components/Main.vue';
 import { Post } from './types';
-import postsData from './content/posts.json';
+import postsData from './../public/content/posts.json';
 
 export default defineComponent({
     components: {
