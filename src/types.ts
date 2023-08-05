@@ -4,5 +4,6 @@ export interface Post {
   image: string;
   tags: string[];
   content: string;
+  summary: string;
   created_at: string;
 }

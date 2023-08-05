@@ -60,11 +60,11 @@ export default {
     },
     methods: {
         clearInput() {
-            console.log('Sidebar clearInput');
+            // console.log('Sidebar clearInput');
             this.searchQuery = "";
         },
         collapse() {
-            console.log('Sidebar collapse');
+            // console.log('Sidebar collapse');
             this.navRef?.classList.remove('show');
         },
     }

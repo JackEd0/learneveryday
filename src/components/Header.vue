@@ -24,7 +24,7 @@ export default {
     },
     methods: {
         clearInput() {
-            console.log('Header clearInput');
+            // console.log('Header clearInput');
             this.searchQuery = "";
         },
     }

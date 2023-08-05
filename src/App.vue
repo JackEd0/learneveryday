@@ -35,9 +35,9 @@ export default defineComponent({
         const sidebarRef = ref<InstanceType<typeof Sidebar> | null>(null);
 
         const searchPosts = (searchTerm: string) => {
-            console.log("searchPosts", searchTerm);
+            // console.log("searchPosts", searchTerm);
             if (router.currentRoute.value.name !== "search") {
-                console.log("router changed");
+                // console.log("router changed");
                 router.push({
                     name: "search",
                     params: {
@@ -47,8 +47,9 @@ export default defineComponent({
             }
 
             const searchResults = posts.filter((post) =>
-                post.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                post.tags.map(tag => tag.toLowerCase()).includes(searchTerm.toLowerCase())
+                post.title.toLowerCase().includes(searchTerm.toLowerCase())
+                || post.tags.map(tag => tag.toLowerCase()).join().includes(searchTerm.toLowerCase())
+                || post.summary.toLowerCase().includes(searchTerm.toLowerCase())
             );
             currentPost.value = null;
             filteredPosts.value = searchResults;
@@ -64,20 +65,20 @@ export default defineComponent({
         });
 
         const fetchCurrentPost = (slug: string | string[]) => {
-            console.log("fetchCurrentPost", slug);
+            // console.log("fetchCurrentPost", slug);
             const slugPosts = posts.filter((post) => post.slug === slug);
             return slugPosts[0] || null;
         };
 
         const tagSearch = (tag: string) => {
-            console.log("tagSearch", tag);
+            // console.log("tagSearch", tag);
             return posts.filter((post) => post.tags.includes(tag));
         };
 
         watch(
             () => route.params,
             (params) => {
-                console.log("watch params", params);
+                // console.log("watch params", params);
                 currentPost.value = null;
                 filteredPosts.value = posts.slice(0, 9);
                 if (params.slug) {
@@ -91,9 +92,11 @@ export default defineComponent({
                 if (params.search) {
                     const searchTerm = Array.isArray(params.search) ? params.search[0] : params.search;
                     filteredPosts.value = posts.filter((post) =>
-                        post.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                        post.tags.map(tag => tag.toLowerCase()).includes(searchTerm.toLowerCase())
+                        post.title.toLowerCase().includes(searchTerm.toLowerCase())
+                        || post.tags.map(tag => tag.toLowerCase()).join().includes(searchTerm.toLowerCase())
+                        || post.summary.toLowerCase().includes(searchTerm.toLowerCase())
                     );
+
                 }
                 sidebarRef.value?.collapse();
             }

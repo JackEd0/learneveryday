@@ -21,7 +21,7 @@
                 </div>
             </div>
             <div v-else class="row row-cols-1 row-cols-md-2 g-4">
-                <PostPreview v-for="(post, index) in posts" :key="index" :post="post" :index="index" />
+                <PostPreview v-for="(post, index) in posts.sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime())" :key="index" :post="post" :index="index" />
             </div>
         </div>
     </main>

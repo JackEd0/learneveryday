@@ -1,13 +1,13 @@
 # learneveryday
 
-https://github.com/JackEd0/learneveryday
-https://le.webrepo.co/
+<https://github.com/JackEd0/learneveryday>
+<https://le.webrepo.co/>
 
 A blog about learning something new every day.
 
 ## Commands
 
-```
+```sh
 npm init
 npm create vite@latest my-vue-app -- --template vue
 npm install
@@ -15,6 +15,9 @@ npm install vue-router
 npm install marked
 
 npm run dev
+npm run build
+# To deploy on github. If there is a custom domain added to github then you need to download the CNAME file that github automatically create and push in the branch into /dist
+npm run deploy
 ```
 
 <http://localhost:5173/>
@@ -25,12 +28,16 @@ npm run dev
 <https://router.vuejs.org/guide/advanced/composition-api.html#accessing-the-router-and-current-route-inside-setup>
 <https://router.vuejs.org/guide/>
 
-https://www.ign.com/ca
-https://medium.com/
-https://getbootstrap.com/docs/5.3/examples/blog/#
-https://v3-migration.vuejs.org/breaking-changes/events-api.html#event-bus
+<https://www.ign.com/ca>
+<https://medium.com/>
+<https://getbootstrap.com/docs/5.3/examples/blog/#>
+<https://v3-migration.vuejs.org/breaking-changes/events-api.html#event-bus>
 
 ## Details
+
+### Posts
+
+The posts shown are sorted from newest to oldest. See `PostPreview` in `src\components\Main.vue`.
 
 ### Global
 

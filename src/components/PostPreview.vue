@@ -1,12 +1,12 @@
 <template>
-    <div class="col" :class="{ 'col-md-12': index === 0 }">
-        <div v-if="post" class="card mb-3" style="max-height: 270px;">
+    <div class="col" :class="{ 'col-md-12': [0,8].includes(index), 'col-md-4': [5,6,7].includes(index), 'card-triplet': [5,6,7].includes(index) }">
+        <div v-if="post" class="card mb-3">
             <div class="row g-0">
-                <div class="col-md-4 col-1 rounded-start card-image"
+                <div class="col-1 card-image" :class="{ 'col-md-4 rounded-start': !([5,6,7].includes(index)), 'col-md-12': [5,6,7].includes(index) }"
                     :style="`background-image: url(${post.image || '/content/banners/placeholder.jpg'})`"
                     :alt=post.title>
                 </div>
-                <div class="col-md-8 col-11">
+                <div class="col-11" :class="{ 'col-md-8': !([5,6,7].includes(index)), 'col-md-12': [5,6,7].includes(index) }">
                     <div class="card-body">
                         <router-link :to="{ name: 'posts', params: { slug: post.slug } }">
                             <h5 class="card-title">{{ post.title }}</h5>
@@ -56,10 +56,13 @@ export default defineComponent({
             if (!props.post) {
                 return;
             }
-            const response = await fetch(props.post.content);
-            const markdown = await response.text();
-            const markedMarkdown = marked(markdown);
-            content.value = markedMarkdown.slice(0, 100) + '...';
+            // const response = await fetch(props.post.content);
+            // const markdown = await response.text();
+            // const markedMarkdown = marked(markdown);
+            // content.value = markedMarkdown.slice(0, 100) + '...';
+
+            // content.value = props.post.summary.slice(0, 200) + '...';
+            content.value = marked(props.post.summary.slice(0, 200) + '...');
         };
 
         onMounted(() => {
@@ -84,6 +87,10 @@ h1 {
     object-fit: cover;
 }
 
+.card {
+    max-height: 270px;
+}
+
 .card-image {
     background-position: center;
     background-repeat: no-repeat;
@@ -96,5 +103,13 @@ h1 {
 
 .card-footer {
     min-height: 59px;
+}
+
+.card-triplet .card-image {
+    height: 200px;
+}
+
+.card-triplet .card {
+    max-height: 470px;
 }
 </style>
