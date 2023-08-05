@@ -1,6 +1,6 @@
-Here's a suggested file structure for your Vue + Vite blog project:
+# Here's a suggested file structure for your Vue + Vite blog project
 
-```
+```text
 my-blog/
 │
 ├── src/
