@@ -6,7 +6,7 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <input v-model="searchQuery" @input="$emit('search', searchQuery)"
-            class="form-control form-control-dark w-100 rounded-0 border-0 visually-hidden-sm" type="text"
+            class="form-control form-control-dark w-100 rounded-0 border-0 visually-hidden-sm input-search-mobile" type="text"
             placeholder="Search..." aria-label="Search">
     </header>
 </template>
@@ -32,6 +32,11 @@ export default {
 </script>
 
 <style>
+.input-search-mobile::placeholder,
+.input-search-mobile::-ms-input-placeholder {
+    color: #fff;
+}
+
 @media (min-width: 540px) {
     .visually-hidden-sm {
         display: none;
