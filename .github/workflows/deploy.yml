@@ -22,12 +22,7 @@ jobs:
         run: npm ci
 
       - name: Build and deploy
-        run: |
-          git remote set-url origin git@github.com:JackEd0/learneveryday.git
-          git config --global user.email "akdodji@gmail.com"
-          git config --list
-          npm run build
-          npm run deploy
+        run: npm run build
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
