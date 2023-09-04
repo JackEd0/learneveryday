@@ -23,6 +23,7 @@ jobs:
 
       - name: Build and deploy
         run: |
+          git config --list
           npm run build
           npm run deploy
 
