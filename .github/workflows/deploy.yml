@@ -24,6 +24,7 @@ jobs:
       - name: Build and deploy
         run: |
           git remote set-url origin git@github.com:JackEd0/learneveryday.git
+          git config --global user.username "akdodji@gmail.com"
           git config --list
           npm run build
           npm run deploy
