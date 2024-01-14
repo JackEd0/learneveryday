@@ -2,7 +2,7 @@
 
 <https://github.com/JackEd0/learneveryday>
 
-<https://le.webrepo.co/>
+Demo: <https://le.webrepo.co/>
 
 A blog about learning something new every day.
 
